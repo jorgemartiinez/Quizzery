@@ -1,0 +1,54 @@
+// * HERO SECTION
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+  @include respond(tab-land){
+    flex-direction: column;
+  }
+
+  // * text column - first titles - then paragraph and buttons
+
+  .heading-primary {
+    height: 7rem;
+  }
+
+  $translate: 20%;
+  @for $i from 2 through 3 {
+    .hero--title-#{$i} {
+      transform: translateX($translate);
+    }
+    $translate: $translate + 20%;
+  }
+
+  &__info-wrapper {
+    margin-right: 5rem;
+    padding-top: 5rem;
+    @include respond(tab-land){
+      padding-top: 0rem;
+    }
+  }
+
+  &__info {
+    padding-top: 5rem;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+  }
+
+  // * img
+  &__img-wrapper {
+    padding-top: 3rem;
+    @include respond(tab-land){
+      order: -1;
+    }
+  }
+
+  &__img {
+    width: 90%;
+  }
+}

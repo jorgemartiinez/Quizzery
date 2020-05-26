@@ -1,0 +1,41 @@
+// * HOME PAGE LAYOUT
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 100vh;
+  margin: 0 auto;
+  @include respond(vertical) {
+    max-height: none;
+  }
+  .header {
+    height: 90vh;
+
+    @include respond(vertical) {
+      height: auto;
+    }
+    .nav {
+      width: 100vw;
+      height: 15%;
+      @include respond(vertical) {
+        height: auto;
+      }
+    }
+
+    .hero {
+      height: 85%;
+      margin: 0 auto;
+      @include respond(vertical) {
+        height: auto;
+      }
+    }
+  }
+
+  .footer {
+    width: 100vw;
+    height: 10vh;
+     @include respond(vertical) {
+      height: 10rem;
+    }
+  }
+}

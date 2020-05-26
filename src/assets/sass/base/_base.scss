@@ -1,0 +1,65 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  box-sizing: border-box;
+  font-size: 1.8rem;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #000;
+}
+
+
+
+// * HEADINGS
+
+.heading-primary {
+  font-size: 5.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.heading-title {
+  font-size: 3.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: $color-primary;
+}
+
+.paragraph {
+  color: $color-grey-dark;
+  font-size: 1.8rem;
+}
+
+// * CLASS UTILS
+.u-mt-b {
+  margin-top: 10rem;
+}
+
+.u-mb-m {
+  margin-bottom: 3rem;
+}
+
+.u-cp {
+  color: $color-primary;
+}
+
+.u-cs {
+  color: $color-secondary;
+}
+
+.u-ct {
+  color: $color-tertiary;
+}
