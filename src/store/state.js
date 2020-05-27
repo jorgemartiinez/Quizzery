@@ -1,3 +1,4 @@
 export default {
-  quizzes: []
+  quizzes: [],
+  currentQuizz: {}
 };

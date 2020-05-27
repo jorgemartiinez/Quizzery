@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
 import Quizzes from './views/Quizzes.vue';
+import Quizz from './views/Quizz.vue';
 
 Vue.use(Router);
 
@@ -13,6 +14,11 @@ export default new Router({
       path: '/',
       name: 'quizzes',
       component: Quizzes
+    },
+    {
+      path: '/quizz/:id',
+      name: 'quizz',
+      component: Quizz
     },
     {
       path: '/home',

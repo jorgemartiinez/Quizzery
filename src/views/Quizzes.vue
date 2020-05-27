@@ -1,11 +1,19 @@
 <template>
   <div class="container">
     <TheNav />
-    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br />
     <div v-if="quizzes.length > 0">
-      <p v-for="quizz in quizzes" :key="quizz.id">{{ quizz }}</p>
+      <div v-for="quizz in quizzes" :key="quizz.id">
+        <p>
+          <router-link :to="{ path: '/quizz/' + quizz.id }">{{
+            quizz.name
+          }}</router-link>
+        </p>
+        <p>Created by {{ quizz.user }} - user id</p>
+        <hr />
+      </div>
     </div>
-    <br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br />
     <TheFooter />
   </div>
 </template>
@@ -20,8 +28,8 @@ export default {
   // },
   created() {
     // * action get quizzies
-    // this.$store.dispatch('fetchQuizzies');
     // this.$store.dispatch('addQuizz');
+    this.$store.dispatch('fetchQuizzies');
   },
   computed: {
     quizzes() {

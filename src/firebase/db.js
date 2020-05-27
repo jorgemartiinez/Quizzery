@@ -2,7 +2,6 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 // Get a Firestore instance
-console.log(process.env);
 const config = {
   apiKey: process.env.VUE_APP_FIREBASE_apiKey,
   authDomain: process.env.VUE_APP_FIREBASE_authDomain,
@@ -16,7 +15,7 @@ const config = {
 
 export const db = firebase.initializeApp(config).firestore();
 
-// Export types that exists in Firestore
-// This is not always necessary, but it's used in other examples
-const { Timestamp, GeoPoint } = firebase.firestore;
-export { Timestamp, GeoPoint };
+// // Export types that exists in Firestore
+// // This is not always necessary, but it's used in other examples
+// const { Timestamp, GeoPoint } = firebase.firestore;
+// export { Timestamp, GeoPoint };

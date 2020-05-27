@@ -1,5 +1,6 @@
 import { db } from '../firebase/db';
 import _ from 'lodash';
+import uniqid from 'uniqid';
 
 // data for trial
 const newQuizz = {
@@ -7,16 +8,36 @@ const newQuizz = {
   created: new Date(),
   questions: [
     {
-      id: _.uniqueId(),
+      id: uniqid(),
       question: '¿Cuantos son 2 más 2?',
-      correct_answer: '4',
-      incorrect_answers: ['Tu padre', '5']
+      answers: [
+        {
+          answer: '4',
+          correct: true
+        },
+        {
+          answer: '5',
+          correct: false
+        }
+      ]
     },
     {
-      id: _.uniqueId(),
+      id: uniqid(),
       question: '¿Cuantas vidas tiene un gato?',
-      correct_answer: '7',
-      incorrect_answers: ['5', '8']
+      answers: [
+        {
+          answer: '7',
+          correct: true
+        },
+        {
+          answer: '8',
+          correct: false
+        },
+        {
+          answer: '9',
+          correct: false
+        }
+      ]
     }
   ]
 };
@@ -41,6 +62,28 @@ export default {
     }
   },
 
+  // * GET SINGLE QUIZZ
+
+  async fetchQuizz({ commit }, quizzId) {
+    try {
+      const doc = await db
+        .collection(QUIZZIES_COLLECTION)
+        .doc(quizzId)
+        .get();
+
+      if (doc.exists) {
+        console.log('The document exists');
+        console.log('data recieved', doc.data());
+        commit('SET_QUIZZ', doc.data());
+      } else {
+        console.log('document doesnt exist boooooi');
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  },
+
+  // * ADD A QUIZZ RECIEVING AND OBJECT
   async addQuizz({ commit }) {
     try {
       const addDoc = await db.collection(QUIZZIES_COLLECTION).add(newQuizz);
@@ -51,6 +94,7 @@ export default {
     }
   },
 
+  // * UPDATE A QUIZZ RECIEVING A FULL QUIZZ OBJECT
   async updateQuizz({ commit }, updatedQuizz) {
     try {
       const updatedDoc = await db
