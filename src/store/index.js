@@ -8,6 +8,8 @@ import mutations from './mutations';
 // state
 import state from './state';
 
+// VIEW -------> ACTION --------> MUTATION ----------> STATE -------> VIEW  bucle
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({

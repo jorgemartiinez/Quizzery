@@ -2,16 +2,16 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 
 // Get a Firestore instance
-
+console.log(process.env);
 const config = {
-  apiKey: 'AIzaSyAX_TuqYh2G-ELEzkqDAQ_e9HOY1XEXMfc',
-  authDomain: 'quizzery-6abfb.firebaseapp.com',
-  databaseURL: 'https://quizzery-6abfb.firebaseio.com',
-  projectId: 'quizzery-6abfb',
-  storageBucket: 'quizzery-6abfb.appspot.com',
-  messagingSenderId: '635279619787',
-  appId: '1:635279619787:web:d2a477889a915dc6f80d4e',
-  measurementId: 'G-XZTYFKF79E'
+  apiKey: process.env.VUE_APP_FIREBASE_apiKey,
+  authDomain: process.env.VUE_APP_FIREBASE_authDomain,
+  databaseURL: process.env.VUE_APP_FIREBASE_databaseURL,
+  projectId: process.env.VUE_APP_FIREBASE_projectId,
+  storageBucket: process.env.VUE_APP_FIREBASE_storageBucket,
+  messagingSenderId: process.env.VUE_APP_FIREBASE_messagingSenderId,
+  appId: process.env.VUE_APP_FIREBASE_appId,
+  measurementId: process.env.VUE_APP_FIREBASE_measurementId
 };
 
 export const db = firebase.initializeApp(config).firestore();

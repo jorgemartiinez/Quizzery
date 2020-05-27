@@ -20,7 +20,8 @@ export default {
   // },
   created() {
     // * action get quizzies
-    this.$store.dispatch('fetchQuizzies');
+    // this.$store.dispatch('fetchQuizzies');
+    // this.$store.dispatch('addQuizz');
   },
   computed: {
     quizzes() {
