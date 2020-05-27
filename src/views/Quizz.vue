@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <div class="container">
     {{ $route.params.id }} {{ $route.params.quizz }}
     <div v-if="Object.keys(quizz).length > 0">
       {{ selectedAnswers.length }}/{{ totalQuestions }} answered
       <br />
       <div v-if="submit">{{ correct }} correct {{ errors }} errors</div>
-      <input type="text" :value="quizz.name" />
+      <h1>{{ quizz.name }}</h1>
       <div v-for="question in quizz.questions" :key="question.id">
-        Question - {{ question.question }} Answers -
+        {{ question.question }}
         <div
           v-for="(answer, answerIndex) in question.answers"
           :key="answer.answer"
@@ -20,6 +20,7 @@
           </p>
           <br />
         </div>
+        <p v-if="submit">{{ checkAndShow(question.id) }}</p>
       </div>
 
       <button
@@ -139,6 +140,26 @@ export default {
         }
       }
     },
+
+    checkAndShow(questionId) {
+      const answerSelected = this.selectedAnswers.find(
+        answer => answer.question == questionId
+      );
+      for (let question of this.quizz.questions) {
+        const isCorrect = question.answers[answerSelected.answer].correct;
+        if (isCorrect) {
+          return 'Respuesta correcta';
+        }
+        if (question.id == questionId) {
+          const whichWas = question.answers.find(answer => answer.correct);
+          console.log(
+            `Respuesta incorrecta, la correcta respuesta era ${whichWas.answer}`
+          );
+          return `Respuesta incorrecta, la correcta respuesta era ${whichWas.answer}`;
+        }
+      }
+    },
+
     // * RESET QUIZZ
     resetQuizz() {
       this.selectedAnswers = [];
