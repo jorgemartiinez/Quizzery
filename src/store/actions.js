@@ -106,5 +106,29 @@ export default {
     } catch (err) {
       console.log('error ocurred', err);
     }
+  },
+
+  // * TRACK QUIZZ ON EXECUTION
+
+  nextQuizz({ commit }) {
+    commit('NEXT_INDEX');
+  },
+
+  // * ANSWER ACTIONS
+
+  resetAnswers({ commit }) {
+    commit('RESET_ANSWERS');
+  },
+
+  selectAnswer({ commit }, index) {
+    commit('SELECT_ANSWER', index);
+  },
+
+  correctAnswer({ commit }) {
+    commit('CORRECT_ANSWER');
+  },
+
+  incorrectAnswer({ commit }) {
+    commit('INCORRECT_ANSWER');
   }
 };

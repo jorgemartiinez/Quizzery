@@ -1,44 +1,17 @@
 <template>
   <div class="container">
-    {{ $route.params.id }} {{ $route.params.quizz }}
-    <div v-if="Object.keys(quizz).length > 0">
-      {{ selectedAnswers.length }}/{{ totalQuestions }} answered
-      <br />
-      <div v-if="submit">{{ correct }} correct {{ errors }} errors</div>
-      <h1>{{ quizz.name }}</h1>
-      <div v-for="question in quizz.questions" :key="question.id">
-        {{ question.question }}
-        <div
-          v-for="(answer, answerIndex) in question.answers"
-          :key="answer.answer"
-        >
-          <p
-            @click="selectAnswer(question.id, answerIndex)"
-            :class="answerClass(question.id, answerIndex)"
-          >
-            {{ answer.answer }}
-          </p>
-          <br />
-        </div>
-        <p v-if="submit">{{ checkAndShow(question.id) }}</p>
-      </div>
-
-      <button
-        @click="sendQuizz"
-        id="submit-btn"
-        :disabled="selectedAnswers.length < totalQuestions"
-      >
-        Submit
-      </button>
-      <button @click="resetQuizz" id="reset-btn">
-        Reset
-      </button>
-    </div>
+    <h1>{{ quizz.name }}</h1>
+    <hr />
+    <QuestionBox v-if="Object.keys(quizz).length > 0" />
   </div>
 </template>
 
 <script>
+import QuestionBox from '../components/quizz/QuestionBox.vue';
 export default {
+  components: {
+    QuestionBox
+  },
   created() {
     this.$store.dispatch('fetchQuizz', this.id);
   },
@@ -53,9 +26,6 @@ export default {
   computed: {
     quizz() {
       return this.$store.state.currentQuizz;
-    },
-    totalQuestions() {
-      return this.$store.state.currentQuizz.questions.length;
     },
     id() {
       return this.$route.params.id;

@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Home from './views/Home.vue';
 import Quizzes from './views/Quizzes.vue';
 import Quizz from './views/Quizz.vue';
+import QuizzEnd from './views/QuizzEnd.vue';
 
 Vue.use(Router);
 
@@ -16,14 +17,19 @@ export default new Router({
       component: Quizzes
     },
     {
+      path: '/home',
+      name: 'home',
+      component: Home
+    },
+    {
       path: '/quizz/:id',
       name: 'quizz',
       component: Quizz
     },
     {
-      path: '/home',
-      name: 'home',
-      component: Home
+      path: '/quizz/:id/end',
+      name: 'endQuizz',
+      component: QuizzEnd
     },
     // {
     //   path: '/',
