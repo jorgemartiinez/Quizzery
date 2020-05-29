@@ -17,7 +17,7 @@
         </p>
         <br />
         <div class="hero__actions">
-          <a class="btn btn--full" @click="goLogin()">Start now</a>
+          <a class="btn btn--full" @click="goQuizzes()">Start now</a>
           <a class="btn btn--outline" @click="goLogin()">Login</a>
         </div>
       </article>
@@ -33,6 +33,10 @@ export default {
   methods: {
     goLogin() {
       console.log('Move to login');
+      this.$router.push('/login');
+    },
+    goQuizzes() {
+      this.$router.push('/quizzes');
     }
   }
 };

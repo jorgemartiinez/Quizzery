@@ -1,12 +1,25 @@
 // * NAV COMPONENT
 .nav {
   align-self: flex-start;
+
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
+  align-items: center;
+
   padding: 2rem 8rem;
   @include bg-img('~@/assets/img/bg-curve-1.svg');
 
   @include respond(tab-land) {
     padding-bottom: 5rem;
   }
+
+  &__links {
+    color: $color-primary;
+    font-weight: 500;
+  }
+
+  &__link {
+    cursor: pointer;
+  }
+
 }

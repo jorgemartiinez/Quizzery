@@ -1,14 +1,15 @@
 <template>
   <div>
     <h2>Create your question dude</h2>
-    <button @click="goBack">Go Back</button>
+    <button class="btn btn--outline" @click="goBack">Go Back</button>
     <form @submit.prevent="saveQuestions">
       <div v-for="(question, i) in questions" :key="i">
-        <label>Question</label>
+        <label class="label">Question</label>
         <input
           type="text"
           required
           minlength="3"
+          class="input"
           v-model="questions[i].question"
           :name="`question-${i}[question]`"
         />
@@ -30,7 +31,11 @@
           <p v-if="questions[i].answers[k].correct">
             Marked as the correct one
           </p>
-          <button v-if="k !== 0 && k !== 1" @click="deleteAnswer(i, k)">
+          <button
+            class="btn"
+            v-if="k !== 0 && k !== 1"
+            @click="deleteAnswer(i, k)"
+          >
             X
           </button>
           <button
@@ -41,13 +46,19 @@
             &#10004;
           </button>
         </div>
-        <button style="margin-left: 120px;" @click="addNewAnswer(i)">
+        <button
+          class="btn btn--outline"
+          style="margin-left: 120px;"
+          @click="addNewAnswer(i)"
+        >
           Add new Answer
         </button>
         <br />
-        <button @click="addNewQuestion">Add New Question</button>
+        <button class="btn btn--full" @click="addNewQuestion">
+          Add New Question
+        </button>
       </div>
-      <button type="submit">Create</button>
+      <button class="btn btn--full" type="submit">Create</button>
     </form>
   </div>
 </template>

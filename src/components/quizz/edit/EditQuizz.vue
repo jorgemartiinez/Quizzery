@@ -15,7 +15,7 @@ import FormQuizzBasic from './FormQuizzBasic.vue';
 export default {
   data() {
     return {
-      currentForm: 1 // ! CAMBIAR DESPUES
+      currentForm: 0 // ! CAMBIAR DESPUES
     };
   },
   components: {

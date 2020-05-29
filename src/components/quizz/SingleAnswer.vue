@@ -1,6 +1,10 @@
 <template>
   <div>
-    <p :class="answerClass()" @click="selectedAnswer(index)">
+    <p
+      class="questionBox__answer"
+      :class="answerClass()"
+      @click="selectedAnswer(index)"
+    >
       {{ answer.answer }}
     </p>
   </div>
@@ -22,7 +26,9 @@ export default {
   },
   methods: {
     selectedAnswer(index) {
-      this.$store.dispatch('selectAnswer', index);
+      if (this.corrected == null) {
+        this.$store.dispatch('selectAnswer', index);
+      }
     },
     answerClass() {
       console.log(this.index, this.selected);
@@ -30,9 +36,9 @@ export default {
         return 'selected';
       } else if (this.corrected !== null) {
         if (this.answer.correct) {
-          return 'success';
+          return 'success-bg';
         }
-        return 'wrong';
+        return 'danger-bg';
       }
     }
   }
@@ -42,13 +48,5 @@ export default {
 <style scoped>
 .selected {
   background-color: lightblue;
-}
-
-.success {
-  background-color: lightgreen;
-}
-
-.wrong {
-  background-color: red;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>{{ solution }}</p>
+    <p class="questionBox__solution">{{ solution }}</p>
   </div>
 </template>
 

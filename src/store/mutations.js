@@ -1,18 +1,35 @@
+import * as firebase from 'firebase';
+
 export default {
   // * QUIZZ DATABASE ACTIONS
   SET_QUIZZIES(state, quizzies) {
     state.quizzes = [...quizzies];
   },
   ADD_QUIZZ(state, quizz) {
-    state.quizzies = [...state.quizzies, quizz];
+    state.quizzes = [...state.quizzies, quizz];
+    state.newQuizz = {};
   },
   SET_QUIZZ(state, quizz) {
     state.currentQuizz = { ...quizz };
   },
 
+  DEL_QUIZZ(state, id) {
+    state.quizzes = state.quizzes.filter(quizz => quizz.id !== id);
+  },
   // * TRACK
   NEXT_INDEX(state) {
     state.quizzTrack.currentIndex++;
+  },
+
+  RESET_ACTUAL_QUIZZ(state) {
+    state.currentQuizz = {};
+    state.quizzTrack = {
+      currentIndex: 0,
+      errors: 0,
+      questionsAnswered: 0,
+      corrected: null,
+      selectedAnswer: null
+    };
   },
 
   // * ANSWERS
@@ -42,7 +59,7 @@ export default {
       description: info.description,
       questions: [],
       created: new Date(),
-      user: 'still dont know' // ! CAMBIAR CUANDO SE IMPLEMENTE EL LOGIN
+      user: firebase.auth().currentUser.uid // ! CAMBIAR CUANDO SE IMPLEMENTE EL LOGIN
     };
   },
 

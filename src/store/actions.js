@@ -1,6 +1,6 @@
-import { db } from '../firebase/db';
-import _ from 'lodash';
+import Firebase from '@/firebase';
 import uniqid from 'uniqid';
+import * as firebase from 'firebase';
 
 // data for trial
 const newQuizz = {
@@ -48,14 +48,17 @@ const QUIZZIES_COLLECTION = 'quizzes';
 export default {
   // * GET THE QUIZZIES ON START
   async fetchQuizzies({ commit }) {
-    console.log('fetch Quizzies');
+    console.log('fetch Quizzies', firebase.auth().currentUser.uid);
     try {
-      const snapshot = await db.collection(QUIZZIES_COLLECTION).get();
+      const snapshot = await Firebase.db
+        .collection(QUIZZIES_COLLECTION)
+        .where('user', '==', firebase.auth().currentUser.uid)
+        .get();
       const quizzes = snapshot.docs.map(doc => {
         const data = doc.data();
         data.id = doc.id;
         return data;
-      });
+      }, []);
       commit('SET_QUIZZIES', quizzes);
     } catch (err) {
       console.log('error ocurred', err);
@@ -66,7 +69,7 @@ export default {
 
   async fetchQuizz({ commit }, quizzId) {
     try {
-      const doc = await db
+      const doc = await Firebase.db
         .collection(QUIZZIES_COLLECTION)
         .doc(quizzId)
         .get();
@@ -84,9 +87,11 @@ export default {
   },
 
   // * ADD A QUIZZ RECIEVING AND OBJECT
-  async addQuizz({ commit }) {
+  async addQuizz({ commit }, quizz) {
     try {
-      const addDoc = await db.collection(QUIZZIES_COLLECTION).add(newQuizz);
+      const addDoc = await Firebase.db
+        .collection(QUIZZIES_COLLECTION)
+        .add(quizz);
       commit('ADD_QUIZZ', newQuizz);
       console.log(addDoc);
     } catch (err) {
@@ -94,10 +99,26 @@ export default {
     }
   },
 
+  // * DELETE A QUIZZ
+
+  async delQuizz({ commit }, id) {
+    const removeDoc = await Firebase.db
+      .collection(QUIZZIES_COLLECTION)
+      .doc(id)
+      .delete()
+      .then(function() {
+        console.log('Document successfully deleted!');
+        commit('DEL_QUIZZ', id);
+      })
+      .catch(function(error) {
+        console.error('Error removing document: ', error);
+      });
+  },
+
   // * UPDATE A QUIZZ RECIEVING A FULL QUIZZ OBJECT
   async updateQuizz({ commit }, updatedQuizz) {
     try {
-      const updatedDoc = await db
+      const updatedDoc = await Firebase.db
         .collection(QUIZZIES_COLLECTION)
         .doc(updatedQuizz.id)
         .add(updatedQuizz);
@@ -112,6 +133,10 @@ export default {
 
   nextQuizz({ commit }) {
     commit('NEXT_INDEX');
+  },
+
+  resetActualQuizz({ commit }) {
+    commit('RESET_ACTUAL_QUIZZ');
   },
 
   // * ANSWER ACTIONS

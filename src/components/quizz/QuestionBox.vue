@@ -1,8 +1,10 @@
 <template>
   <div>
-    <div>
+    <div class="questionBox">
       <h1>{{ question.question }}</h1>
-      {{ questionsAnswered }}/{{ totalQuestions }} total
+      <div class="questionBox__stats">
+        <span>{{ questionsAnswered }}/{{ totalQuestions }} total answered</span>
+      </div>
       <ListAnswers />
       <QuestionSolution
         v-if="corrected !== null"
@@ -10,6 +12,7 @@
         :selectedAnswer="selectedAnswer"
       />
       <button
+        class="btn"
         @click="nextIndex"
         :disabled="
           selectedAnswer == null ||
@@ -19,9 +22,10 @@
           selectedAnswer == null ? 'You must answer before continue' : 'Go next'
         "
       >
-        Correct and Go Next
+        Correct and Go to Next Question
       </button>
       <button
+        class="btn"
         v-if="currentIndex == totalQuestions - 1 && corrected !== null"
         @click="send"
       >

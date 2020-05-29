@@ -1,26 +1,28 @@
 <template>
   <div>
-    <form @submit.prevent="nextForm">
+    <form @submit.prevent="nextForm" class="form">
       <br />
-      <label>Quizz name</label>
+      <label class="label">Quizz name</label>
       <input
         type="text"
         name="quizz-name"
         v-model="info.name"
+        class="input"
         minlength="3"
         required
       />
       <br />
-      <label>Quizz description</label>
+      <label class="label">Quizz description</label>
       <input
         type="text"
         name="quizz-description"
         v-model="info.description"
+        class="input"
         minlength="3"
         required
       />
       <br />
-      <button type="submit">Next</button>
+      <button class="btn u-mt-md" type="submit">Next</button>
     </form>
   </div>
 </template>

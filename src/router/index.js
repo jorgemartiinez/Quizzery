@@ -1,11 +1,13 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './views/Home.vue';
-import Quizzes from './views/Quizzes.vue';
-import Quizz from './views/Quizz.vue';
-import QuizzEnd from './views/QuizzEnd.vue';
-import QuizzCreate from './views/QuizzCreate.vue';
-import QuizzPreview from './views/QuizzPreview.vue';
+import Home from '@/views/Home.vue';
+import Quizzes from '@/views/Quizzes.vue';
+import Quizz from '@/views/Quizz.vue';
+import QuizzEnd from '@/views/QuizzEnd.vue';
+import QuizzCreate from '@/views/QuizzCreate.vue';
+import QuizzPreview from '@/views/QuizzPreview.vue';
+import Login from '@/views/Login.vue';
+import { isLoggedIn, isNotLoggedIn } from './middleware';
 
 Vue.use(Router);
 
@@ -15,23 +17,26 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'quizzes',
-      component: Quizzes
-    },
-    {
-      path: '/home',
       name: 'home',
       component: Home
     },
     {
+      path: '/quizzes',
+      name: 'quizzes',
+      component: Quizzes,
+      beforeEnter: isLoggedIn
+    },
+    {
       path: '/quizzes/create',
       name: 'createQuizz',
-      component: QuizzCreate
+      component: QuizzCreate,
+      beforeEnter: isLoggedIn
     },
     {
       path: '/quizzes/create/preview',
       name: 'previewQuizz',
-      component: QuizzPreview
+      component: QuizzPreview,
+      beforeEnter: isLoggedIn
     },
     {
       path: '/quizz/:id',
@@ -43,16 +48,12 @@ export default new Router({
       name: 'endQuizz',
       component: QuizzEnd
     },
-    // {
-    //   path: '/',
-    //   name: 'home',
-    //   component: Home
-    // },
-    // {
-    //   path: '/app',
-    //   name: 'app',
-    //   component: App
-    // },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login,
+      beforeEnter: isNotLoggedIn
+    },
     {
       path: '/about',
       name: 'about',
@@ -60,7 +61,7 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () =>
-        import(/* webpackChunkName: "about" */ './views/About.vue')
+        import(/* webpackChunkName: "about" */ '@/views/About.vue')
     }
   ]
 });

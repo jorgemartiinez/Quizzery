@@ -22,7 +22,6 @@ body {
 }
 
 
-
 // * HEADINGS
 
 .heading-primary {
@@ -38,16 +37,49 @@ body {
   color: $color-primary;
 }
 
+.heading-quizz {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  border-radius: .5rem;
+  text-align: center;
+  background-color: $color-primary;
+  color: #fff;
+}
+
 .paragraph {
   color: $color-grey-dark;
   font-size: 1.8rem;
 }
 
 // * CLASS UTILS
+
+.danger {
+  color: #dc3545;
+}
+.success {
+  color: #28a745;
+}
+.danger-bg {
+  background-color: #dc3545;
+}
+.success-bg {
+  background-color: #28a745;
+}
+
+
+.pointer {
+  cursor: pointer;
+}
+
+.u-mt-sm {
+  margin-top: 2rem;
+}
 .u-mt-b {
   margin-top: 10rem;
 }
-
+.u-mt-md {
+  margin-top: 5rem;
+}
 .u-mb-m {
   margin-bottom: 3rem;
 }

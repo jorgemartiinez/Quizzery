@@ -1,0 +1,23 @@
+.login-buttons{
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .heading-primary {
+        margin-bottom: 2rem;
+    }
+
+    .heading-secondary {
+        margin-bottom: 5rem;
+    }
+
+    .btn {
+        margin-top: 2rem;
+        display: flex;
+        align-items: center;
+        img{
+            margin-right: 1rem;
+        }
+    }
+}
