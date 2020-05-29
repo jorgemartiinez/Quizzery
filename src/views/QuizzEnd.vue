@@ -5,7 +5,8 @@
     <h2>Correct Answers: {{ totalQuestions - errors }}</h2>
     <h2>Total questions {{ totalQuestions }}</h2>
     <h2>
-      Percentage {{ (errors / 2) * 100 }} % of correct answers. Espabila tio...
+      Percentage {{ ((totalQuestions - errors) / 2) * 100 }} % of correct
+      answers. Espabila tio...
     </h2>
   </div>
 </template>

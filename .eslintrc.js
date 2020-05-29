@@ -17,7 +17,11 @@ module.exports = {
     'vue/order-in-components': 'warning',
     'vue/this-in-template': 'warning',
     'prettier/prettier': ['error', { singleQuote: true }],
-    'arrow-spacing': ['error', { before: true, after: true }]
+    'arrow-spacing': ['error', { before: true, after: true }],
+    "vue/html-closing-bracket-newline": ["error", {
+      "singleline": "never",
+      "multiline": "always"
+    }]
   },
 
   parserOptions: {

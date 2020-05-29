@@ -4,6 +4,8 @@ import Home from './views/Home.vue';
 import Quizzes from './views/Quizzes.vue';
 import Quizz from './views/Quizz.vue';
 import QuizzEnd from './views/QuizzEnd.vue';
+import QuizzCreate from './views/QuizzCreate.vue';
+import QuizzPreview from './views/QuizzPreview.vue';
 
 Vue.use(Router);
 
@@ -20,6 +22,16 @@ export default new Router({
       path: '/home',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/quizzes/create',
+      name: 'createQuizz',
+      component: QuizzCreate
+    },
+    {
+      path: '/quizzes/create/preview',
+      name: 'previewQuizz',
+      component: QuizzPreview
     },
     {
       path: '/quizz/:id',

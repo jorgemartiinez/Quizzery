@@ -32,5 +32,21 @@ export default {
     state.quizzTrack.corrected = false;
     state.quizzTrack.errors++;
     state.quizzTrack.questionsAnswered++;
+  },
+
+  // * CREATE QUIZZ
+
+  FILL_BASIC_QUIZZ_INFO(state, info) {
+    state.newQuizz = {
+      name: info.name,
+      description: info.description,
+      questions: [],
+      created: new Date(),
+      user: 'still dont know' // ! CAMBIAR CUANDO SE IMPLEMENTE EL LOGIN
+    };
+  },
+
+  FILL_QUESTIONS(state, questions) {
+    state.newQuizz.questions = [...questions];
   }
 };

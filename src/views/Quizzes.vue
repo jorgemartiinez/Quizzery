@@ -2,6 +2,7 @@
   <div class="container">
     <TheNav />
     <br /><br /><br />
+    <button class="btn" @click="goToCreate()">Create new</button>
     <div v-if="quizzes.length > 0">
       <div v-for="quizz in quizzes" :key="quizz.id">
         <p>
@@ -40,6 +41,10 @@ export default {
     TheNav,
     TheFooter
   },
-  methods: {}
+  methods: {
+    goToCreate() {
+      this.$router.push('/quizzes/create');
+    }
+  }
 };
 </script>

@@ -130,5 +130,15 @@ export default {
 
   incorrectAnswer({ commit }) {
     commit('INCORRECT_ANSWER');
+  },
+
+  // * CREATE QUIZZ ACTIONS
+
+  fillBasicInfo({ commit }, info) {
+    commit('FILL_BASIC_QUIZZ_INFO', info);
+  },
+  fillQuestions({ commit }, questions) {
+    questions.map(question => (question.id = uniqid()));
+    commit('FILL_QUESTIONS', questions);
   }
 };
