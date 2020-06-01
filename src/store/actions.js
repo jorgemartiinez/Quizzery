@@ -48,85 +48,59 @@ const QUIZZIES_COLLECTION = 'quizzes';
 export default {
   // * GET THE QUIZZIES ON START
   async fetchQuizzies({ commit }) {
-    console.log('fetch Quizzies', firebase.auth().currentUser.uid);
-    try {
-      const snapshot = await Firebase.db
-        .collection(QUIZZIES_COLLECTION)
-        .where('user', '==', firebase.auth().currentUser.uid)
-        .get();
-      const quizzes = snapshot.docs.map(doc => {
-        const data = doc.data();
-        data.id = doc.id;
-        return data;
-      }, []);
-      commit('SET_QUIZZIES', quizzes);
-    } catch (err) {
-      console.log('error ocurred', err);
-    }
+    const snapshot = await Firebase.db
+      .collection(QUIZZIES_COLLECTION)
+      .where('user', '==', firebase.auth().currentUser.uid)
+      .get();
+    const quizzes = snapshot.docs.map(doc => {
+      const data = doc.data();
+      data.id = doc.id;
+      return data;
+    }, []);
+    commit('SET_QUIZZIES', quizzes);
   },
 
   // * GET SINGLE QUIZZ
 
   async fetchQuizz({ commit }, quizzId) {
-    try {
-      const doc = await Firebase.db
-        .collection(QUIZZIES_COLLECTION)
-        .doc(quizzId)
-        .get();
-
-      if (doc.exists) {
-        console.log('The document exists');
-        console.log('data recieved', doc.data());
-        commit('SET_QUIZZ', doc.data());
-      } else {
-        console.log('document doesnt exist boooooi');
-      }
-    } catch (e) {
-      console.log(e);
+    const doc = await Firebase.db
+      .collection(QUIZZIES_COLLECTION)
+      .doc(quizzId)
+      .get();
+    if (doc.exists) {
+      console.log('The document exists');
+      commit('SET_QUIZZ', doc.data());
     }
   },
-
   // * ADD A QUIZZ RECIEVING AND OBJECT
   async addQuizz({ commit }, quizz) {
-    try {
-      const addDoc = await Firebase.db
-        .collection(QUIZZIES_COLLECTION)
-        .add(quizz);
-      commit('ADD_QUIZZ', newQuizz);
-      console.log(addDoc);
-    } catch (err) {
-      console.log('error ocurred', err);
-    }
+    quizz.user = await firebase.auth().currentUser.uid;
+    quizz.questions.map(question => {
+      question.id = uniqid();
+    });
+    await Firebase.db.collection(QUIZZIES_COLLECTION).add(quizz);
+    commit('ADD_QUIZZ', newQuizz);
   },
 
   // * DELETE A QUIZZ
 
   async delQuizz({ commit }, id) {
-    const removeDoc = await Firebase.db
+    await Firebase.db
       .collection(QUIZZIES_COLLECTION)
       .doc(id)
       .delete()
-      .then(function() {
-        console.log('Document successfully deleted!');
+      .then(() => {
         commit('DEL_QUIZZ', id);
-      })
-      .catch(function(error) {
-        console.error('Error removing document: ', error);
       });
   },
 
   // * UPDATE A QUIZZ RECIEVING A FULL QUIZZ OBJECT
   async updateQuizz({ commit }, updatedQuizz) {
-    try {
-      const updatedDoc = await Firebase.db
-        .collection(QUIZZIES_COLLECTION)
-        .doc(updatedQuizz.id)
-        .add(updatedQuizz);
-      commit('UPDATE_QUIZZ', updatedQuizz);
-      console.log(updatedDoc);
-    } catch (err) {
-      console.log('error ocurred', err);
-    }
+    await Firebase.db
+      .collection(QUIZZIES_COLLECTION)
+      .doc(updatedQuizz.id)
+      .add(updatedQuizz);
+    commit('UPDATE_QUIZZ', updatedQuizz);
   },
 
   // * TRACK QUIZZ ON EXECUTION
@@ -159,11 +133,8 @@ export default {
 
   // * CREATE QUIZZ ACTIONS
 
-  fillBasicInfo({ commit }, info) {
-    commit('FILL_BASIC_QUIZZ_INFO', info);
-  },
-  fillQuestions({ commit }, questions) {
-    questions.map(question => (question.id = uniqid()));
-    commit('FILL_QUESTIONS', questions);
+  FILL_QUIZZ({ commit }, quizz) {
+    quizz.questions.map(question => (question.id = uniqid()));
+    commit('FILL_QUIZZ', quizz);
   }
 };

@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import TheFooter from '../components/TheFooter.vue';
-import TheNav from '../components/TheNav.vue';
+import TheFooter from '@/components/layout/TheFooter.vue';
+import TheNav from '@/components/layout/TheNav.vue';
 export default {
   components: { TheNav, TheFooter },
   // * KEEP TRACK DATA

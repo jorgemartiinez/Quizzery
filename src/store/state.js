@@ -7,6 +7,5 @@ export default {
     corrected: null, // * POR DEFECTO AL ESTAR NULL SABREMOS QUE LA PREGUNTA NO HA SIDO RESPONDIDA
     selectedAnswer: null
   },
-  newQuizz: {},
   currentQuizz: {}
 };

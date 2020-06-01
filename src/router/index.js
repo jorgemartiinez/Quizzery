@@ -1,12 +1,14 @@
 import Vue from 'vue';
+// * VIEWS
 import Router from 'vue-router';
 import Home from '@/views/Home.vue';
 import Quizzes from '@/views/Quizzes.vue';
 import Quizz from '@/views/Quizz.vue';
 import QuizzEnd from '@/views/QuizzEnd.vue';
 import QuizzCreate from '@/views/QuizzCreate.vue';
-import QuizzPreview from '@/views/QuizzPreview.vue';
 import Login from '@/views/Login.vue';
+
+// * MIDDLEWARES
 import { isLoggedIn, isNotLoggedIn } from './middleware';
 
 Vue.use(Router);
@@ -33,12 +35,6 @@ export default new Router({
       beforeEnter: isLoggedIn
     },
     {
-      path: '/quizzes/create/preview',
-      name: 'previewQuizz',
-      component: QuizzPreview,
-      beforeEnter: isLoggedIn
-    },
-    {
       path: '/quizz/:id',
       name: 'quizz',
       component: Quizz
@@ -53,15 +49,6 @@ export default new Router({
       name: 'login',
       component: Login,
       beforeEnter: isNotLoggedIn
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () =>
-        import(/* webpackChunkName: "about" */ '@/views/About.vue')
     }
   ]
 });

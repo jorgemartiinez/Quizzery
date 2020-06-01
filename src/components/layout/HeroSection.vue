@@ -17,8 +17,9 @@
         </p>
         <br />
         <div class="hero__actions">
-          <a class="btn btn--full" @click="goQuizzes()">Start now</a>
-          <a class="btn btn--outline" @click="goLogin()">Login</a>
+          <router-link to="/quizzes" class="btn btn--full"
+            >Start now</router-link>
+          <router-link class="btn btn--outline" to="/login">Login</router-link>
         </div>
       </article>
     </div>
@@ -27,17 +28,3 @@
     </div>
   </section>
 </template>
-
-<script>
-export default {
-  methods: {
-    goLogin() {
-      console.log('Move to login');
-      this.$router.push('/login');
-    },
-    goQuizzes() {
-      this.$router.push('/quizzes');
-    }
-  }
-};
-</script>

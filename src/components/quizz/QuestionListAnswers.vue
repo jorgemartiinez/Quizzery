@@ -1,6 +1,6 @@
 <template>
   <div>
-    <SingleAnswer
+    <QuestionSingleAnswer
       v-for="(answer, index) in answers"
       :key="answer.id"
       :answer="answer"
@@ -11,10 +11,10 @@
 </template>
 
 <script>
-import SingleAnswer from './SingleAnswer.vue';
+import QuestionSingleAnswer from './QuestionSingleAnswer.vue';
 export default {
   components: {
-    SingleAnswer
+    QuestionSingleAnswer
   },
   computed: {
     answers() {

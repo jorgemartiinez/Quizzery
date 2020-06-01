@@ -5,7 +5,7 @@
       We missed you! It's nice to have you back.
     </h2>
     <p class="paragraph u-mb-m">
-      You can log in which whatever of the options below.
+      You can log in with whatever of the options below.
     </p>
     <button @click="login" class="btn btn--outline">
       <img
@@ -24,12 +24,12 @@ import Firebase from '@/firebase';
 export default {
   methods: {
     async login() {
-      Firebase.login()
-        .then(result => {
-          console.log(result);
-          this.$router.push('/quizzes');
-        })
-        .catch(err => console.log('err on login', err));
+      try {
+        await Firebase.login();
+        this.$router.push('/quizzes');
+      } catch (err) {
+        this.$swal({ title: 'Error ocurred on login', icon: 'error' });
+      }
     }
   }
 };

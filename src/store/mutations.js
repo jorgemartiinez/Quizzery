@@ -1,13 +1,10 @@
-import * as firebase from 'firebase';
-
 export default {
   // * QUIZZ DATABASE ACTIONS
   SET_QUIZZIES(state, quizzies) {
     state.quizzes = [...quizzies];
   },
   ADD_QUIZZ(state, quizz) {
-    state.quizzes = [...state.quizzies, quizz];
-    state.newQuizz = {};
+    state.quizzes.push(quizz);
   },
   SET_QUIZZ(state, quizz) {
     state.currentQuizz = { ...quizz };
@@ -49,21 +46,5 @@ export default {
     state.quizzTrack.corrected = false;
     state.quizzTrack.errors++;
     state.quizzTrack.questionsAnswered++;
-  },
-
-  // * CREATE QUIZZ
-
-  FILL_BASIC_QUIZZ_INFO(state, info) {
-    state.newQuizz = {
-      name: info.name,
-      description: info.description,
-      questions: [],
-      created: new Date(),
-      user: firebase.auth().currentUser.uid // ! CAMBIAR CUANDO SE IMPLEMENTE EL LOGIN
-    };
-  },
-
-  FILL_QUESTIONS(state, questions) {
-    state.newQuizz.questions = [...questions];
   }
 };

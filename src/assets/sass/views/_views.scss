@@ -54,5 +54,20 @@
 // * QUIZZES PAGE LAYOUT
 
 .quizzes {
-  
+  min-height: 100vh;
+}
+
+
+// * QUIZZ CREATE
+
+.quizz-create {
+
+  .form {
+    padding: 3rem;
+  }
+
+  .container {
+    padding-top: 5rem;
+  }
+
 }

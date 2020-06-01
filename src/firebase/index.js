@@ -20,21 +20,6 @@ export default {
   login() {
     const provider = new firebase.auth.GoogleAuthProvider();
     return firebase.auth().signInWithPopup(provider);
-    // .then(function(result) {
-    //   console.log(result);
-    //   // This gives you a Google Access Token. You can use it to access the Google API.
-    //   var token = result.credential.accessToken;
-    //   var user = result.user;
-    //   console.log('Your token', token);
-    //   console.log('Your user', user);
-    // })
-    // .catch(function(error) {
-    //   const errorCode = error.code;
-    //   const errorMessage = error.message;
-    //   const email = error.email;
-    //   const credential = error.credential;
-    //   console.log(errorCode, errorMessage, email, credential);
-    // });
   },
   logout() {
     return firebase.auth().signOut();

@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     async logout() {
-      Firebase.logout().then(result => this.$router.push('/'));
+      Firebase.logout().then(res => this.$router.push('/'));
     },
     goToQuizzes() {
       this.$router.push('/quizzes');

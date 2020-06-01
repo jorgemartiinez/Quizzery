@@ -3,7 +3,3 @@
     <p class="footer__text">© Created by Jorge Martínez, 2020</p>
   </footer>
 </template>
-
-<script>
-export default {};
-</script>

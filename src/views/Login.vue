@@ -7,10 +7,10 @@
 </template>
 
 <script>
-import TheFooter from '../components/TheFooter.vue';
-import TheNav from '../components/TheNav.vue';
-import LoginButtons from '../components/login/LoginButtons.vue';
+import TheFooter from '@/components/layout/TheFooter.vue';
+import TheNav from '@/components/layout/TheNav.vue';
+import LoginButtons from '@/components/login/LoginButtons.vue';
 export default {
-  components: { LoginButtons, TheNav, TheNav, TheFooter }
+  components: { LoginButtons, TheNav, TheFooter }
 };
 </script>

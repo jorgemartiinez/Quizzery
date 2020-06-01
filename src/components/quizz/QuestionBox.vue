@@ -5,7 +5,7 @@
       <div class="questionBox__stats">
         <span>{{ questionsAnswered }}/{{ totalQuestions }} total answered</span>
       </div>
-      <ListAnswers />
+      <QuestionListAnswers />
       <QuestionSolution
         v-if="corrected !== null"
         :question="question"
@@ -22,14 +22,14 @@
           selectedAnswer == null ? 'You must answer before continue' : 'Go next'
         "
       >
-        Correct and Go to Next Question
+        Correct Question
       </button>
       <button
         class="btn"
         v-if="currentIndex == totalQuestions - 1 && corrected !== null"
         @click="send"
       >
-        Send
+        Finish Quizz
       </button>
     </div>
   </div>
@@ -37,10 +37,10 @@
 
 <script>
 import QuestionSolution from './QuestionSolution.vue';
-import ListAnswers from './ListAnswers.vue';
+import QuestionListAnswers from './QuestionListAnswers.vue';
 export default {
   components: {
-    ListAnswers,
+    QuestionListAnswers,
     QuestionSolution
   },
   computed: {

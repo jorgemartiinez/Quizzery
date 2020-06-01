@@ -1,10 +1,12 @@
 <template>
   <div class="quizz">
     <TheNav />
+    <GoBackButton />
     <div class="container">
       <h1 class="heading-quizz u-mt-md">
-        Current Quizz <br />{{ quizz.name }}
+        {{ quizz.name }}
       </h1>
+      <p class="paragraph">{{ quizz.description }}</p>
       <QuestionBox v-if="Object.keys(quizz).length > 0" />
     </div>
     <TheFooter />
@@ -12,18 +14,19 @@
 </template>
 
 <script>
-import TheNav from '../components/TheNav.vue';
-import TheFooter from '../components/TheFooter.vue';
+import GoBackButton from '@/components/shared/GoBackButton.vue';
+import TheNav from '@/components/layout/TheNav.vue';
+import TheFooter from '@/components/layout/TheFooter.vue';
 import QuestionBox from '../components/quizz/QuestionBox.vue';
 export default {
   components: {
     QuestionBox,
     TheFooter,
-    TheNav
+    TheNav,
+    GoBackButton
   },
   created() {
     this.$store.dispatch('fetchQuizz', this.id);
-    // this.$store.dispatch('resetActualQuizz');
   },
   computed: {
     quizz() {

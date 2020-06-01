@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1 class="heading-secondary u-mt-md u-mb-m">
-      Here you can create and manage your quizzes.
+      Here you can manage your quizzes.
     </h1>
     <p class="paragraph"></p>
     <button class="btn btn--full" @click="goToCreate()">Create new</button>
@@ -9,7 +9,7 @@
       <thead class="table-quizz__head" border="1">
         <td class="table-quizz__heading">Name</td>
         <td class="table-quizz__heading">Description</td>
-        <td class="table-quizz__heading">Created on</td>
+        <td class="table-quizz__heading">Created at</td>
         <td class="table-quizz__heading">Actions</td>
       </thead>
       <tbody class="table-quiz__body" v-if="quizzes.length > 0">
@@ -36,7 +36,7 @@
     </table>
     <p class="paragraph u-mt-md" v-if="quizzes.length == 0">
       You don't have any quizzes created. Create your first one by clicking the
-      'Create new' button
+      'Create new' button.
     </p>
   </div>
 </template>
@@ -62,13 +62,29 @@ export default {
       this.$router.push(`/quizz/${id}`);
     },
     delQuizz(id) {
-      if (
-        window.confirm(
-          'Are you sure that you want to delet this quizz?. All data will be lost'
-        )
-      ) {
-        this.$store.dispatch('delQuizz', id);
-      }
+      this.$swal({
+        title: 'Are you sure that you want to delete this quizz?',
+        text: 'Data will be lost',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!'
+      }).then(async ({ isConfirmed }) => {
+        if (isConfirmed) {
+          try {
+            await this.$store.dispatch('delQuizz', id);
+            this.$swal({
+              title: 'Your quizz has been deleted.',
+              icon: 'success'
+            });
+          } catch (err) {
+            this.$swal({
+              title: 'Error ocurred deleting your quizz. Please try again.',
+              icon: 'error'
+            });
+          }
+          this.$router.push('/quizzes');
+        }
+      });
     }
   }
 };

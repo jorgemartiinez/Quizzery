@@ -1,7 +1,6 @@
 .form {
     padding: 2rem;
 
-
     .label {
         display: block;
         font-size: 2rem;
@@ -16,6 +15,25 @@
         padding: .8rem;
         margin-bottom: 3rem;
         font-size: 1.7rem;
+    }
+
+
+    .form-action-button {
+        background-color: #fff;
+        color: $color-primary;
+        height: 100%;
+        margin-left: 1rem;
+        width: 3rem;
+        border-radius: .6rem;
+        font-size: 2rem;
+        cursor: pointer;
+    }
+
+    .form-correct {
+        color: white;
+        border-radius: .6rem;
+        padding: 1rem;
+        margin-left: 2rem;
     }
 
 }

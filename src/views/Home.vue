@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import HeroSection from '../components/HeroSection.vue';
-import TheFooter from '../components/TheFooter.vue';
-import TheNav from './../components/TheNav';
+import HeroSection from '@/components/layout/HeroSection.vue';
+import TheFooter from '@/components/layout/TheFooter.vue';
+import TheNav from '@/components/layout/TheNav';
 
 export default {
   name: 'home',
