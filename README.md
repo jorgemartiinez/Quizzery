@@ -10,9 +10,9 @@ Link a una pequeña demo en Youtube.
 
 ## Estado Actual [Funcionalidades]
 
-- [x] Utilizar Firebase como backend
+- [x] Implementar backend Firebase.
 - [x] Login con Google
-- [\] Mejoras en diseño y hacerlo responsive.
+- [ ] Mejoras en diseño y hacerlo responsive.
 - [x] Crear cuestionarios
 - [ ] Editar cuestionarios
 - [x] Borrar cuestionarios
